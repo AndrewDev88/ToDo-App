@@ -1,97 +1,54 @@
-# ToDo App — Full-Stack JWT Authorization with Role-Based Access
+# 📋 ToDo App — Full-Stack JWT Authorization with Role-Based Access
 
 A full-stack ToDo application built using **Node.js**, **Express**, **Sequelize**, and **React (Vite)**. Features secure **JWT-based authentication** (cookies only), **role-based access control**, and a clean, scalable project structure.
 
-## Features
+---
 
-- **JWT Authentication** via HTTP-only cookies
-- **Role-based access control** (User, Admin)
-- **CRUD operations** for Tasks
-- Admin can view all tasks
-- Users can only access their own tasks
-- Status updates for tasks: `pending`, `in progress`, `completed`
-- Responsive and minimalist UI (React)
-- **Protected routes** and AuthContext on the client side
-- Modular backend with layered architecture:
+## ✨ Features
+
+- ✅ JWT Authentication (HTTP-only cookies)
+- ✅ Role-based access control (User, Admin)
+- ✅ CRUD operations for Tasks
+- ✅ Status transitions: `pending`, `in progress`, `completed`
+- ✅ Admin can view all users’ tasks
+- ✅ Users can manage only their own tasks
+- ✅ Protected routes (React + React Router)
+- ✅ AuthContext to handle session on frontend
+- ✅ Backend architecture with layers:
   - Controllers
   - Services
   - Repositories
-- DTOs, middlewares, validation (Joi)
-- Auto-create initial admin user on launch
+  - DTOs, middlewares
+- ✅ Input validation with Joi
+- ✅ Auto-create initial admin on start
+- ✅ Production-ready environment switching
+- ✅ Clean UI using minimal custom styling
 
-## Tech Stack
+---
+
+## 🧱 Tech Stack
 
 **Frontend:**
 - React (Vite)
 - Axios
-- React Router
+- React Router DOM
 
 **Backend:**
 - Node.js
 - Express
 - Sequelize (MySQL)
-- JWT
+- JWT (cookie only)
 - dotenv
 - cookie-parser
-- CORS
 - Joi
+- CORS
+- Winston (Logger)
 
 ---
 
-## API Endpoints
+## 🚀 Getting Started
 
-All endpoints are prefixed with `/api`.
-
-### Auth
-
-| Method | Endpoint         | Description                 | Access       |
-|--------|------------------|-----------------------------|--------------|
-| POST   | `/auth/register` | Register new user           | Public       |
-| POST   | `/auth/login`    | Login user                  | Public       |
-| POST   | `/auth/logout`   | Logout user (clears cookie) | Authenticated |
-| GET    | `/auth/me`       | Get current user from token | Authenticated |
-
-### Tasks
-
-| Method | Endpoint              | Description                             | Access       |
-|--------|-----------------------|-----------------------------------------|--------------|
-| GET    | `/tasks`              | Get user's tasks                         | Authenticated |
-| GET    | `/tasks/:id`          | Get task by ID (user or admin only)     | Role-based   |
-| POST   | `/tasks`              | Create new task                          | Authenticated |
-| PUT    | `/tasks/:id`          | Update task (title, description, status)| Owner/Admin  |
-| DELETE | `/tasks/:id`          | Delete task                              | Owner/Admin  |
-| GET    | `/tasks/all`          | Get all tasks (admin only)              | Admin        |
-
----
-
-## Folder Structure
-
-```
-backend/
-├── src/
-│   ├── controllers/
-│   ├── middlewares/
-│   ├── database/
-│   ├── dtos/
-│   ├── constants/
-│   ├── models/
-│   ├── repositories/
-│   ├── routes/
-│   ├── services/
-│   ├── logs/
-│   └── utils/
-frontend/
-├── src/
-│   ├── components/
-│   ├── context/
-│   └── pages/
-```
-
----
-
-## Getting Started
-
-### Development Mode
+### 🔧 Development Mode
 
 #### Backend
 
@@ -109,60 +66,120 @@ npm install
 npm run dev
 ```
 
-#### Environment Variables
+#### 🧪 Environment Variables
 
+Create `.env` in `/backend`:
 
-Backend `.env`:
+```env
+//Example
+SERVER_PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=12345
+DB_NAME=mydb
 
+JWT_SECRET=holiday
+JWT_EXPIRES_IN=1d
+INIT_ADMIN_PASSWORD=Admin12345
+
+FRONTEND_URL=http://localhost:5173
+NODE_ENV=development
 ```
-SERVER_PORT=Server port //3000
-DB_HOST=DB host //localhost
-DB_PORT=DB port //3306
-DB_USER=DB user //root
-DB_PASSWORD=DB password //DataBase12345
-DB_NAME=DB name //mydb
-JWT_SECRET=JWT secret key //holiday
-JWT_EXPIRES_IN=JWT before date //1d
-INIT_ADMIN_PASSWORD=Admin password //Admin12345
-FRONTEND_URL=Frontend URL for Cors in develop mod //http://localhost:5173
-NODE_ENV=development/production //Select one
-```
 
+---
 
-```
-
-### Production Mode
+### 📦 Production Mode
 
 1. Build frontend:
+
 ```bash
 cd frontend
 npm run build
 ```
 
-2. Serve with backend:
+2. Start backend in production:
+
 ```bash
 cd backend
 npm install
 npm start
 ```
 
-Ensure `NODE_ENV=production` in your backend `.env` file.
+✅ Make sure `NODE_ENV=production` in `.env`  
+✅ Vite will generate static files into `backend/public`
 
 ---
 
-## Future Improvements
+## 🔐 API Endpoints
 
-- [ ] Pagination for tasks
-- [ ] Filters by status/date
-- [ ] Task deadlines & reminders
-- [ ] Profile editing (username, password)
-- [ ] Admin dashboard
-- [ ] Unit & integration testing
-- [ ] CI/CD pipeline (GitHub Actions)
-- [ ] Docker integration
+> All endpoints are prefixed with `/api`
+
+### 🛡️ Auth
+
+| Method | Endpoint         | Description                 | Access        | Role       |
+|--------|------------------|-----------------------------|---------------|------------|
+| POST   | `/auth/register` | Register new user           | Public        | —          |
+| POST   | `/auth/login`    | Login user                  | Public        | —          |
+| POST   | `/auth/logout`   | Logout user (clears cookie) | Authenticated | Any        |
+| GET    | `/auth/me`       | Get current user from token | Authenticated | Any        |
+
+### 📋 Tasks
+
+| Method | Endpoint         | Description                             | Access        | Role          |
+|--------|------------------|-----------------------------------------|---------------|---------------|
+| GET    | `/tasks`         | Get user's tasks                         | Authenticated | User/Admin    |
+| GET    | `/tasks/:id`     | Get task by ID (user or admin only)     | Authenticated | User/Admin    |
+| POST   | `/tasks`         | Create new task                          | Authenticated | **User only** |
+| PUT    | `/tasks/:id`     | Update task (title, description, status)| Authenticated | **User only** |
+| DELETE | `/tasks/:id`     | Delete task                              | Authenticated | User/Admin    |
+| GET    | `/tasks/all`     | Get all tasks (admin only)              | Authenticated | **Admin only** |
 
 ---
 
-## License
+## 🗂 Folder Structure
 
-MIT — Free to use for any purpose.
+```bash
+backend/
+├── src/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── database/
+│   ├── dtos/
+│   ├── constants/
+│   ├── models/
+│   ├── repositories/
+│   ├── routes/
+│   ├── services/
+│   ├── logs/
+│   └── utils/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── context/
+│   └── pages/
+```
+
+---
+
+## 📌 Future Enhancements
+
+- [ ] Pagination for task list
+- [ ] Filtering by status/date
+- [ ] Task deadlines and reminders
+- [ ] Profile management (change password, username)
+- [ ] Admin dashboard (user overview, task stats)
+- [ ] Unit & Integration tests
+- [ ] CI/CD with GitHub Actions
+- [ ] Dockerization
+
+---
+
+## 📄 License
+
+MIT — free to use for any purpose.
+
+---
+
+> Designed and developed with ❤️ to simulate a real-world production-ready workflow.
