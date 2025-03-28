@@ -117,12 +117,15 @@ npm start
 
 ### 🛡️ Auth
 
-| Method | Endpoint         | Description                 | Access        | Role       |
-|--------|------------------|-----------------------------|---------------|------------|
-| POST   | `/auth/register` | Register new user           | Public        | —          |
-| POST   | `/auth/login`    | Login user                  | Public        | —          |
-| POST   | `/auth/logout`   | Logout user (clears cookie) | Authenticated | Any        |
-| GET    | `/auth/me`       | Get current user from token | Authenticated | Any        |
+### 🛡️ Auth
+
+| Method | Endpoint         | Description                 | Access        | Role          |
+|--------|------------------|-----------------------------|---------------|---------------|
+| POST   | `/auth/register` | Register new user           | Public        | —             |
+| POST   | `/auth/login`    | Login user                  | Public        | —             |
+| POST   | `/auth/logout`   | Logout user (clears cookie) | Authenticated | User/Admin    |
+| GET    | `/auth/me`       | Get current user from token | Authenticated | User/Admin    |
+
 
 ### 📋 Tasks
 
