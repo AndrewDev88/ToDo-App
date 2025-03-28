@@ -177,10 +177,4 @@ frontend/
 
 ---
 
-## 📄 License
-
-MIT — free to use for any purpose.
-
----
-
-> Designed and developed with ❤️ to simulate a real-world production-ready workflow.
+> Designed and developed to try simulating a real-world production-ready workflow.
