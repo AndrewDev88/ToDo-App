@@ -117,26 +117,24 @@ npm start
 
 ### 🛡️ Auth
 
-| Method | Endpoint         | Description                 | Access        | Role          |
-|--------|------------------|-----------------------------|---------------|---------------|
-| POST   | `/auth/register` | Register new user           | Public        | —             |
-| POST   | `/auth/login`    | Login user                  | Public        | —             |
-| POST   | `/auth/logout`   | Logout user (clears cookie) | Authenticated | User/Admin    |
-| GET    | `/auth/me`       | Get current user from token | Authenticated | User/Admin    |
+| Method | Endpoint         | Description                                  | Access        | Role          |
+|--------|------------------|----------------------------------------------|---------------|---------------|
+| POST   | `/auth/register` | Register a new user                          | Public        | —             |
+| POST   | `/auth/login`    | Authenticate user and issue JWT cookie       | Public        | —             |
+| POST   | `/auth/logout`   | Logout current user (clears auth cookie)     | Authenticated | User/Admin    |
+| GET    | `/auth/me`       | Fetch authenticated user's information       | Authenticated | User/Admin    |
 
 
 ### 📋 Tasks
 
-| Method | Endpoint         | Description                             | Access        | Role          |
-|--------|------------------|-----------------------------------------|---------------|---------------|
-| GET    | `/tasks`         | Get user's tasks                         | Authenticated | User/Admin    |
-| GET    | `/tasks/:id`     | Get task by ID (user or admin only)     | Authenticated | User/Admin    |
-| POST   | `/tasks`         | Create new task                          | Authenticated | **User only** |
-| PUT    | `/tasks/:id`     | Update task (title, description, status)| Authenticated | **User only** |
-| DELETE | `/tasks/:id`     | Delete task                              | Authenticated | User/Admin    |
-| GET    | `/tasks/all`     | Get all tasks (admin only)              | Authenticated | **Admin only** |
-
----
+| Method | Endpoint         | Description                                                | Access        | Role          |
+|--------|------------------|------------------------------------------------------------|---------------|---------------|
+| GET    | `/tasks`         | Fetch tasks belonging to the authenticated user           | Authenticated | User/Admin    |
+| GET    | `/tasks/:id`     | Fetch specific task (only owner or admin has access)      | Authenticated | User/Admin    |
+| POST   | `/tasks`         | Create a new task under the authenticated user's account  | Authenticated | **User only** |
+| PUT    | `/tasks/:id`     | Update task (title, description, status) if user is owner | Authenticated | **User only** |
+| DELETE | `/tasks/:id`     | Delete a task (only owner or admin can delete)            | Authenticated | User/Admin    |
+| GET    | `/tasks/all`     | Fetch all tasks in the system                             | Authenticated | **Admin only** |
 
 ## 🗂 Folder Structure
 
