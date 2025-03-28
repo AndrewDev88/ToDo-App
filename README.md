@@ -136,6 +136,8 @@ npm start
 | DELETE | `/tasks/:id`     | Delete a task (only owner or admin can delete)            | Authenticated | User/Admin    |
 | GET    | `/tasks/all`     | Fetch all tasks in the system                             | Authenticated | **Admin only** |
 
+---
+
 ## 🗂 Folder Structure
 
 ```bash
