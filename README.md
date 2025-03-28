@@ -117,8 +117,6 @@ npm start
 
 ### 🛡️ Auth
 
-### 🛡️ Auth
-
 | Method | Endpoint         | Description                 | Access        | Role          |
 |--------|------------------|-----------------------------|---------------|---------------|
 | POST   | `/auth/register` | Register new user           | Public        | —             |
